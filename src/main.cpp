@@ -39,6 +39,7 @@ int main(void)
     camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
 
     int cameraMode = CAMERA_FREE;
+    GuiSetStyle(LABEL,  TEXT + (guiState*3), 0xff0000ff);
 
     DisableCursor();                    // Limit cursor to relative movement inside the window
 
@@ -128,7 +129,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(DARKGRAY);
 
             BeginMode3D(camera);
 

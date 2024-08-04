@@ -17,6 +17,7 @@ struct Chunk {
     Mesh mesh;
     Model model;
     bool isLoaded;
+    Material mat;
 
     Chunk() {
         blocks = new Block **[CHUNK_SIZE];
@@ -26,6 +27,9 @@ struct Chunk {
                 blocks[i][j] = new Block[CHUNK_SIZE];
             }
         }
+
+        mat = LoadMaterialDefault();
+        mat.maps[MATERIAL_MAP_DIFFUSE].color = DARKGREEN;
     };
 
     ~Chunk() {
@@ -83,22 +87,23 @@ struct Chunk {
 
     // renders the chunk
     void render() {
-        DrawModel(model, {0.0, 0.0, 0.0}, 1.0f, DARKGREEN);
-        DrawModelWires(model, {0.0, 0.0, 0.0}, 1.0f, GREEN);
+        // DrawModel(model, {0.0, 0.0, 0.0}, 1.0f, DARKGREEN);
+        // DrawModelWires(model, {0.0, 0.0, 0.0}, 1.0f, WHITE);
+        DrawMesh(mesh, mat, {0.0, 0.0, 0.0});
     }
 
     void update() {
         UploadMesh(&mesh, false);
-        model = LoadModelFromMesh(mesh);
+        // model = LoadModelFromMesh(mesh);
     }
 
     void randomize() {
         for (int x = 0; x < CHUNK_SIZE; x++) {
             for (int y = 0; y < CHUNK_SIZE; y++) {
                 for (int z = 0; z < CHUNK_SIZE; z++) {
-                    // int i = rand() % 2;
-                    // blocks[x][y][z].isActive = i == 0 ? false : true;
-                    blocks[x][y][z].isActive = true;
+                    int i = rand() % 2;
+                    blocks[x][y][z].isActive = i == 0 ? false : true;
+                    // blocks[x][y][z].isActive = true;
                 }
             }
         }
