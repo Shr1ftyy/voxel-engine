@@ -30,7 +30,7 @@ int main(void)
 
     // Define the camera to look into our 3d world (position, target, up vector)
     Camera camera = { 0 };
-    camera.position = { 0.0f, 2.0f, 4.0f };    // Camera position
+    camera.position = { 0.0f, 2.0f, 1.0f };    // Camera position
     camera.target = { 0.0f, 2.0f, 0.0f };      // Camera looking at point
     camera.up = { 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
     camera.fovy = 60.0f;                                // Camera field-of-view Y
@@ -168,6 +168,7 @@ int main(void)
             GuiLabel({ 15 * scale, 90, 300 * scale, 10 * scale }, "- Camera projection key: P");
             GuiLabel({ 15 * scale, 105, 300 * scale, 10 * scale}, "- Toggle fullscreen: F11");
             GuiLabel({ 15 * scale, 120, 300 * scale, 10 * scale}, TextFormat("- GetFPS: %i", GetFPS()));
+            GuiLabel({ 15 * scale, 135, 300 * scale, 10 * scale}, TextFormat("- Chunk Gen On: %i", chunkManager.genChunk));
 
             GuiLabel({ 976 * scale, 15, 300 * scale, 10 * scale }, "Camera status:");
             GuiLabel({ 976 * scale, 30, 300 * scale, 10 * scale }, TextFormat("- Mode: %s", (cameraMode == CAMERA_FREE) ? "FREE" :
